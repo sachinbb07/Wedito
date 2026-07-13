@@ -1,14 +1,5 @@
 [
   {
-    "id": "3",
-    "title": "derivatives-cheatsheet.pdf",
-    "category": "notes",
-    "description": "One-page reference covering power rule, chain rule, product/quotient rule, and common derivative tables.",
-    "url": "https://github.com/yourusername/yourrepo/blob/main/files/derivatives-cheatsheet.pdf",
-    "date": "2026-06-20",
-    "new": false
-  },
-  {
     "id": "1783910916217",
     "title": "Desmos",
     "category": "other",
