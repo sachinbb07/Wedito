@@ -3,36 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>/resources — code, graphs & notes</title>
-<meta name="description" content="Downloadable code, Desmos graphs, and notes shared with the channel.">
+<title>DevVault — Download Free Developer Resources</title>
+<meta name="description" content="Free source code, Desmos graphs, fonts, and dev resources to download.">
 
 <!-- Google AdSense (replace ca-pub-XXXXXXXXXXXXXXXX with your real Publisher ID) -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-  <div class="wrap header-row">
-    <a href="/" class="brand"><span class="prompt">~/</span>resources<span class="cursor"></span></a>
-    <span class="count-pill" id="countPill">loading…</span>
+<header class="glass">
+  <div class="wrap nav-row">
+    <a href="#" class="logo">
+      <span class="logo-mark">DV</span>
+      DevVault
+    </a>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#downloads">Downloads</a>
+      <a href="#categories">Categories</a>
+      <a href="#blog">Blog</a>
+      <a href="#about">About</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search" id="searchBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Toggle theme" id="themeBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      </button>
+    </div>
   </div>
 </header>
 
-<section class="hero">
-  <div class="wrap">
-    <p class="hero-eyebrow">// everything I share, in one place</p>
-    <h1>Grab the code.<br><span class="dim">Run the graph.</span><br>Keep the notes.</h1>
-    <p>Every resource from the channel — scripts, Desmos links, and reference notes — lands here first. Search, filter, and download.</p>
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="hero-eyebrow"><span class="dot"></span>free & open · updated weekly</span>
+      <h1>Download Free<br><span class="accent">Developer Resources</span></h1>
+      <p>Source code, Desmos graphs, fonts, and scripts I build — packaged up and ready for you to grab, no signup required.</p>
+      <div class="hero-actions">
+        <a href="#downloads" class="btn btn-primary">
+          Browse Downloads
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#downloads" class="btn btn-secondary">Latest Uploads</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="num" id="statTotal">—</div>
+          <div class="label">resources</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">100%</div>
+          <div class="label">free</div>
+        </div>
+        <div class="hero-stat">
+          <div class="num">0</div>
+          <div class="label">signups needed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <canvas id="nodeCanvas"></canvas>
+      <div class="hero-visual-card glass c1">
+        <div class="card-title">spiral.desmos</div>
+        <div>graph · 2.1kb</div>
+      </div>
+      <div class="hero-visual-card glass c2">
+        <div class="card-title">utils.py</div>
+        <div>script · v1.4</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <div class="wrap">
-  <div class="ad-slot banner">
+  <div class="ad-slot" style="min-height:90px;">
     <ins class="adsbygoogle"
       style="display:block; width:100%;"
       data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
@@ -40,60 +92,204 @@
       data-ad-format="horizontal"
       data-full-width-responsive="true"></ins>
   </div>
+</div>
 
-  <div class="controls">
-    <div class="search-row">
-      <span class="chevron">&gt;</span>
-      <input type="text" id="searchInput" placeholder="search resources…" autocomplete="off">
+<section id="downloads">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="section-eyebrow">// featured</p>
+        <h2>Featured Downloads</h2>
+      </div>
+      <a href="#" class="section-link">View all resources →</a>
     </div>
-    <div class="filter-row" id="filterRow">
-      <button class="filter-chip active" data-filter="all">all</button>
-      <!-- category chips injected here -->
+    <div class="download-grid" id="featuredGrid">
+      <!-- populated by JS from resources.json, falls back to static cards below if it fails -->
     </div>
   </div>
+</section>
 
-  <div class="layout-with-sidebar">
-    <main class="listing">
-      <p class="section-label" id="sectionLabel">// showing all resources</p>
-      <div class="grid" id="grid"></div>
-    </main>
-
-    <aside class="sidebar">
-      <div class="ad-slot">
-        <ins class="adsbygoogle"
-          style="display:block"
-          data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-          data-ad-slot="0000000000"
-          data-ad-format="auto"
-          data-full-width-responsive="true"></ins>
+<section id="categories">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <p class="section-eyebrow">// browse</p>
+        <h2>Categories</h2>
       </div>
-    </aside>
+    </div>
+    <div class="cat-grid">
+      <a href="#downloads" class="cat-card">
+        <div class="cat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h4>Codes</h4>
+        <span class="count">source files</span>
+      </a>
+      <a href="#downloads" class="cat-card">
+        <div class="cat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
+        </div>
+        <h4>Desmos</h4>
+        <span class="count">graphs</span>
+      </a>
+      <a href="#downloads" class="cat-card">
+        <div class="cat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V4h16v3M9 20h6M12 4v16"/></svg>
+        </div>
+        <h4>Fonts</h4>
+        <span class="count">typefaces</span>
+      </a>
+      <a href="#downloads" class="cat-card">
+        <div class="cat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h4>Web Projects</h4>
+        <span class="count">html / css / js</span>
+      </a>
+      <a href="#downloads" class="cat-card">
+        <div class="cat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12a4 4 0 118 0 4 4 0 01-8 0z"/></svg>
+        </div>
+        <h4>Python</h4>
+        <span class="count">scripts</span>
+      </a>
+      <a href="#downloads" class="cat-card">
+        <div class="cat-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h4>Notes & PDFs</h4>
+        <span class="count">docs</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="ad-slot" style="min-height:100px;">
+    <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+      data-ad-slot="0000000000"
+      data-ad-format="fluid"
+      data-full-width-responsive="true"></ins>
   </div>
 </div>
 
 <footer>
-  <div class="wrap header-row" style="flex-wrap:wrap;">
-    <span>© 2026 · resources</span>
-    <a href="admin.html">admin</a>
+  <div class="wrap footer-row">
+    <span>© 2026 DevVault · built and shared by sachinbb07</span>
+    <div class="footer-links">
+      <a href="admin.html">admin</a>
+      <a href="#about">about</a>
+    </div>
   </div>
 </footer>
 
 <script>
 (function() {
-  const grid = document.getElementById('grid');
-  const searchInput = document.getElementById('searchInput');
-  const filterRow = document.getElementById('filterRow');
-  const countPill = document.getElementById('countPill');
-  const sectionLabel = document.getElementById('sectionLabel');
+  // ---- Node-graph constellation canvas ----
+  const canvas = document.getElementById('nodeCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes;
+  const NODE_COUNT = 22;
 
-  let allResources = [];
-  let activeFilter = 'all';
-  let searchTerm = '';
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    w = canvas.width = rect.width;
+    h = canvas.height = rect.height;
+  }
 
-  const CATEGORY_LABELS = {
-    code: 'code',
-    desmos: 'desmos',
-    notes: 'notes'
+  function initNodes() {
+    nodes = Array.from({ length: NODE_COUNT }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.25,
+      vy: (Math.random() - 0.5) * 0.25,
+      r: Math.random() * 1.8 + 1.2
+    }));
+  }
+
+  function step() {
+    ctx.clearRect(0, 0, w, h);
+    nodes.forEach(n => {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > w) n.vx *= -1;
+      if (n.y < 0 || n.y > h) n.vy *= -1;
+    });
+
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 130) {
+          ctx.strokeStyle = `rgba(56, 189, 248, ${0.14 * (1 - dist / 130)})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(167, 139, 250, 0.55)';
+      ctx.fill();
+    });
+
+    requestAnimationFrame(step);
+  }
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (canvas) {
+    resize();
+    initNodes();
+    window.addEventListener('resize', () => { resize(); initNodes(); });
+    if (!reduceMotion) {
+      step();
+    } else {
+      // draw a single static frame
+      step_once();
+    }
+  }
+  function step_once() {
+    ctx.clearRect(0, 0, w, h);
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(167, 139, 250, 0.55)';
+      ctx.fill();
+    });
+  }
+
+  // ---- Theme toggle (light mode is a lightweight inversion) ----
+  const themeBtn = document.getElementById('themeBtn');
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('light-mode');
+  });
+
+  // ---- Search (scrolls to downloads + focuses a future search input) ----
+  document.getElementById('searchBtn').addEventListener('click', () => {
+    document.getElementById('downloads').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // ---- Category icon colors alternate cyan/purple ----
+  document.querySelectorAll('.cat-icon').forEach((el, i) => {
+    if (i % 2 === 1) {
+      el.style.background = 'linear-gradient(135deg, #A78BFA 0%, #38BDF8 100%)';
+    }
+  });
+
+  // ---- Load resources.json and render featured cards ----
+  const ICONS = {
+    code: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+    desmos: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>',
+    notes: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',
+    other: '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/></svg>'
   };
 
   function escapeHtml(str) {
@@ -105,109 +301,39 @@
   function formatDate(dateStr) {
     const d = new Date(dateStr);
     if (isNaN(d)) return dateStr;
-    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   }
-
-  function buildFilterChips(resources) {
-    const cats = [...new Set(resources.map(r => r.category))];
-    cats.forEach(cat => {
-      const btn = document.createElement('button');
-      btn.className = 'filter-chip';
-      btn.dataset.filter = cat;
-      btn.textContent = CATEGORY_LABELS[cat] || cat;
-      filterRow.appendChild(btn);
-    });
-  }
-
-  function render() {
-    const filtered = allResources.filter(r => {
-      const matchesFilter = activeFilter === 'all' || r.category === activeFilter;
-      const haystack = (r.title + ' ' + r.description).toLowerCase();
-      const matchesSearch = haystack.includes(searchTerm.toLowerCase());
-      return matchesFilter && matchesSearch;
-    });
-
-    countPill.textContent = allResources.length + ' file' + (allResources.length === 1 ? '' : 's');
-    sectionLabel.textContent = activeFilter === 'all'
-      ? `// showing all resources (${filtered.length})`
-      : `// filtered: ${activeFilter} (${filtered.length})`;
-
-    if (filtered.length === 0) {
-      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
-        <div class="glyph">∅</div>
-        <p>No resources match that search.</p>
-      </div>`;
-      return;
-    }
-
-    let html = '';
-    filtered.forEach((r, i) => {
-      html += `
-        <a class="card" href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer">
-          <div class="card-top">
-            <span class="tag ${escapeHtml(r.category)}">[${escapeHtml(r.category)}]</span>
-            ${r.new ? '<span class="new-badge">NEW</span>' : ''}
-          </div>
-          <h3>${escapeHtml(r.title)}</h3>
-          <p>${escapeHtml(r.description)}</p>
-          <div class="card-footer">
-            <span>${formatDate(r.date)}</span>
-            <span class="go">open →</span>
-          </div>
-        </a>`;
-
-      // in-feed ad every 6 cards
-      if ((i + 1) % 6 === 0 && i !== filtered.length - 1) {
-        html += `
-          <div class="ad-slot in-feed">
-            <ins class="adsbygoogle"
-              style="display:block"
-              data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
-              data-ad-slot="0000000000"
-              data-ad-format="fluid"
-              data-full-width-responsive="true"></ins>
-          </div>`;
-      }
-    });
-    grid.innerHTML = html;
-
-    // trigger adsbygoogle for newly inserted ad slots
-    document.querySelectorAll('.ad-slot ins:not([data-adsbygoogle-status])').forEach(() => {
-      try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch (e) {}
-    });
-  }
-
-  filterRow.addEventListener('click', (e) => {
-    const btn = e.target.closest('.filter-chip');
-    if (!btn) return;
-    filterRow.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
-    btn.classList.add('active');
-    activeFilter = btn.dataset.filter;
-    render();
-  });
-
-  let debounceTimer;
-  searchInput.addEventListener('input', (e) => {
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      searchTerm = e.target.value;
-      render();
-    }, 120);
-  });
 
   fetch('resources.json?_=' + Date.now())
     .then(res => res.json())
     .then(data => {
-      allResources = data.sort((a, b) => new Date(b.date) - new Date(a.date));
-      buildFilterChips(allResources);
-      render();
+      const sorted = data.sort((a, b) => new Date(b.date) - new Date(a.date));
+      document.getElementById('statTotal').textContent = sorted.length;
+
+      const grid = document.getElementById('featuredGrid');
+      const featured = sorted.slice(0, 8);
+
+      grid.innerHTML = featured.map((r, i) => `
+        <div class="dl-card">
+          <div class="dl-icon ${i % 2 === 1 ? 'purple' : ''}">${ICONS[r.category] || ICONS.other}</div>
+          <h3>${escapeHtml(r.title)} ${r.new ? '<span class="new-tag">NEW</span>' : ''}</h3>
+          <p class="desc">${escapeHtml(r.description)}</p>
+          <div class="dl-meta">
+            <span>${escapeHtml(r.category)}</span>
+            <span>${formatDate(r.date)}</span>
+          </div>
+          <div class="dl-footer">
+            <span class="dl-count">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+              ${escapeHtml(r.category)}
+            </span>
+            <a href="${escapeHtml(r.url)}" target="_blank" rel="noopener noreferrer" class="dl-btn">Download</a>
+          </div>
+        </div>
+      `).join('');
     })
     .catch(() => {
-      countPill.textContent = 'error';
-      grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1">
-        <div class="glyph">!</div>
-        <p>Couldn't load resources.json. Check the file exists in the repo root.</p>
-      </div>`;
+      document.getElementById('statTotal').textContent = '—';
     });
 })();
 </script>
