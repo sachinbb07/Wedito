@@ -1,14 +1,5 @@
 [
   {
-    "id": "1",
-    "title": "quadratic-solver.py",
-    "category": "code",
-    "description": "Python script that solves quadratic equations step by step, shows the discriminant, and plots the roots.",
-    "url": "https://github.com/yourusername/yourrepo/blob/main/files/quadratic-solver.py",
-    "date": "2026-07-01",
-    "new": true
-  },
-  {
     "id": "3",
     "title": "derivatives-cheatsheet.pdf",
     "category": "notes",
