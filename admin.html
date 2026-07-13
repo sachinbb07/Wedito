@@ -3,143 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>admin — resources</title>
+<title>admin — Wedito</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<style>
-  .admin-wrap { max-width: 620px; margin: 0 auto; padding: 40px 20px 80px; }
-  .panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 22px;
-    margin-bottom: 20px;
-  }
-  .panel h2 {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    margin: 0 0 16px;
-    color: var(--teal);
-  }
-  label {
-    display: block;
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    color: var(--paper-dim);
-    margin: 16px 0 6px;
-  }
-  label:first-of-type { margin-top: 0; }
-  input[type="text"], input[type="password"], input[type="url"], textarea, select {
-    width: 100%;
-    background: var(--ink);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 12px 14px;
-    color: var(--paper);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    outline: none;
-    transition: border-color 0.15s ease;
-  }
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--teal-dim);
-  }
-  textarea { resize: vertical; min-height: 70px; }
-  .checkbox-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 16px;
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--paper-dim);
-  }
-  .checkbox-row input { width: auto; }
-  button {
-    font-family: var(--font-display);
-    font-size: 0.85rem;
-    background: var(--teal);
-    color: var(--ink);
-    border: none;
-    border-radius: 8px;
-    padding: 13px 20px;
-    font-weight: 700;
-    cursor: pointer;
-    width: 100%;
-    margin-top: 20px;
-    transition: opacity 0.15s ease;
-  }
-  button:hover { opacity: 0.88; }
-  button:disabled { opacity: 0.5; cursor: not-allowed; }
-  button.secondary {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--paper-dim);
-  }
-  .status {
-    font-family: var(--font-display);
-    font-size: 0.82rem;
-    margin-top: 14px;
-    padding: 12px 14px;
-    border-radius: 8px;
-    display: none;
-  }
-  .status.show { display: block; }
-  .status.ok { background: rgba(94, 234, 212, 0.1); color: var(--teal); border: 1px solid var(--teal-dim); }
-  .status.err { background: rgba(245, 158, 11, 0.1); color: var(--amber); border: 1px solid var(--amber); }
-  .status.pending { background: rgba(156, 163, 175, 0.1); color: var(--paper-dim); border: 1px solid var(--border); }
-  .help {
-    font-size: 0.82rem;
-    color: var(--paper-dim);
-    margin: 8px 0 0;
-    line-height: 1.5;
-  }
-  .help a { color: var(--teal); }
-  .token-state {
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    padding: 8px 12px;
-    border-radius: 6px;
-    background: rgba(94, 234, 212, 0.08);
-    color: var(--teal);
-    display: none;
-  }
-  .token-state.show { display: block; }
-  .existing-list {
-    max-height: 320px;
-    overflow-y: auto;
-  }
-  .existing-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.88rem;
-  }
-  .existing-item:last-child { border-bottom: none; }
-  .existing-item .name { font-family: var(--font-display); font-size: 0.82rem; }
-  .existing-item .del-btn {
-    width: auto;
-    margin: 0;
-    padding: 6px 12px;
-    background: transparent;
-    border: 1px solid var(--amber);
-    color: var(--amber);
-    font-size: 0.72rem;
-  }
-</style>
 </head>
 <body>
 
-<header>
-  <div class="wrap header-row">
-    <a href="index.html" class="brand"><span class="prompt">~/</span>admin<span class="cursor"></span></a>
-    <a href="index.html" class="count-pill" style="text-decoration:none;">← back to site</a>
+<header class="glass">
+  <div class="wrap nav-row">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">W</span>
+      admin
+    </a>
+    <a href="index.html" class="icon-btn" aria-label="Back to site">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    </a>
   </div>
 </header>
 
@@ -148,23 +29,52 @@
   <div class="panel">
     <h2>// connection</h2>
     <label for="repoOwner">GitHub username</label>
-    <input type="text" id="repoOwner" placeholder="yourusername">
+    <input type="text" id="repoOwner" placeholder="sachinbb07">
 
     <label for="repoName">Repository name</label>
-    <input type="text" id="repoName" placeholder="yourrepo">
+    <input type="text" id="repoName" placeholder="Wedito">
 
     <label for="ghToken">Personal access token</label>
-    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx">
+    <input type="password" id="ghToken" placeholder="github_pat_xxxxxxxxxxxx">
     <p class="help">
-      Create a <strong>fine-grained token</strong> scoped to just this repo, with <strong>Contents: read and write</strong> permission.
-      Go to GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens.
-      This is stored only in your phone's browser, never sent anywhere except GitHub's API.
+      Fine-grained token, scoped to just this repo, with <strong>Contents: read and write</strong>.
+      GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens.
+      Stored only in this browser.
     </p>
     <div class="token-state" id="tokenState">✓ saved on this device</div>
     <button class="secondary" id="saveConnBtn" type="button">save connection</button>
     <button class="secondary" id="clearConnBtn" type="button" style="border-color:var(--amber); color:var(--amber);">clear saved token</button>
   </div>
 
+  <!-- ============================================
+       CATEGORY MANAGEMENT
+       ============================================ -->
+  <div class="panel">
+    <h2>
+      // manage categories
+      <button class="toggle-btn" id="toggleCatForm" type="button">+ new</button>
+    </h2>
+
+    <div id="catFormWrap" style="display:none;">
+      <label for="catName">Category name</label>
+      <input type="text" id="catName" placeholder="e.g. Fonts">
+
+      <label for="catImage">Image (optional — square photo works best)</label>
+      <input type="file" id="catImage" accept="image/*">
+      <p class="help" id="catImgPreview"></p>
+
+      <button class="wide" id="saveCatBtn" type="button" style="margin-top:16px;">add category</button>
+    </div>
+
+    <div class="existing-list" id="catList" style="margin-top:16px;">
+      <p class="help">Loading…</p>
+    </div>
+    <div class="status" id="catStatus"></div>
+  </div>
+
+  <!-- ============================================
+       ADD RESOURCE
+       ============================================ -->
   <div class="panel">
     <h2>// add a resource</h2>
     <label for="title">Title (filename-style, e.g. quadratic-solver.py)</label>
@@ -172,10 +82,7 @@
 
     <label for="category">Category</label>
     <select id="category">
-      <option value="code">code</option>
-      <option value="desmos">desmos</option>
-      <option value="notes">notes</option>
-      <option value="other">other</option>
+      <option value="">Loading categories…</option>
     </select>
 
     <label for="description">Description</label>
@@ -186,13 +93,16 @@
 
     <div class="checkbox-row">
       <input type="checkbox" id="isNew" checked>
-      <label for="isNew" style="margin:0; color:var(--paper);">mark as NEW</label>
+      <label for="isNew" style="margin:0; color:var(--text);">mark as NEW</label>
     </div>
 
-    <button id="submitBtn" type="button">publish to site</button>
+    <button class="wide" id="submitBtn" type="button">publish to site</button>
     <div class="status" id="status"></div>
   </div>
 
+  <!-- ============================================
+       EXISTING RESOURCES
+       ============================================ -->
   <div class="panel">
     <h2>// existing resources</h2>
     <div class="existing-list" id="existingList">
@@ -211,6 +121,16 @@
     tokenState: document.getElementById('tokenState'),
     saveConnBtn: document.getElementById('saveConnBtn'),
     clearConnBtn: document.getElementById('clearConnBtn'),
+
+    toggleCatForm: document.getElementById('toggleCatForm'),
+    catFormWrap: document.getElementById('catFormWrap'),
+    catName: document.getElementById('catName'),
+    catImage: document.getElementById('catImage'),
+    catImgPreview: document.getElementById('catImgPreview'),
+    saveCatBtn: document.getElementById('saveCatBtn'),
+    catList: document.getElementById('catList'),
+    catStatus: document.getElementById('catStatus'),
+
     title: document.getElementById('title'),
     category: document.getElementById('category'),
     description: document.getElementById('description'),
@@ -221,13 +141,14 @@
     existingList: document.getElementById('existingList'),
   };
 
-  const STORAGE_KEY = 'resources_admin_conn_v1';
+  const STORAGE_KEY = 'wedito_admin_conn_v1';
+  let cachedCategories = [];
 
+  // ---------- connection ----------
   function loadConn() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
-      if (!raw) return null;
-      return JSON.parse(raw);
+      return raw ? JSON.parse(raw) : null;
     } catch (e) { return null; }
   }
 
@@ -238,12 +159,13 @@
       token: els.ghToken.value.trim()
     };
     if (!conn.owner || !conn.repo || !conn.token) {
-      showStatus('err', 'Fill in username, repo, and token before saving.');
+      showStatus(els.status, 'err', 'Fill in username, repo, and token before saving.');
       return;
     }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(conn));
     els.tokenState.classList.add('show');
-    showStatus('ok', 'Connection saved on this device.');
+    showStatus(els.status, 'ok', 'Connection saved on this device.');
+    loadCategories();
     loadExisting();
   }
 
@@ -253,50 +175,48 @@
     els.repoName.value = '';
     els.ghToken.value = '';
     els.tokenState.classList.remove('show');
-    showStatus('pending', 'Saved connection cleared.');
+    showStatus(els.status, 'pending', 'Saved connection cleared.');
   }
 
-  function showStatus(type, msg) {
-    els.status.className = 'status show ' + type;
-    els.status.textContent = msg;
+  function showStatus(el, type, msg) {
+    el.className = 'status show ' + type;
+    el.textContent = msg;
   }
 
   function getConn() {
     const c = loadConn();
     if (!c || !c.owner || !c.repo || !c.token) {
-      showStatus('err', 'Set your GitHub connection above first.');
+      showStatus(els.status, 'err', 'Set your GitHub connection above first.');
       return null;
     }
     return c;
   }
 
-  // GitHub Contents API helpers
-  async function ghGetFile(conn) {
-    const res = await fetch(`https://api.github.com/repos/${conn.owner}/${conn.repo}/contents/resources.json`, {
-      headers: {
-        'Authorization': `Bearer ${conn.token}`,
-        'Accept': 'application/vnd.github+json'
-      }
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = String(str);
+    return div.innerHTML;
+  }
+
+  // ---------- GitHub API helpers ----------
+  async function ghGetFile(conn, path) {
+    const res = await fetch(`https://api.github.com/repos/${conn.owner}/${conn.repo}/contents/${path}`, {
+      headers: { 'Authorization': `Bearer ${conn.token}`, 'Accept': 'application/vnd.github+json' }
     });
-    if (!res.ok) throw new Error(`GitHub read failed (${res.status}). Check username/repo/token.`);
+    if (!res.ok) throw new Error(`GitHub read failed for ${path} (${res.status}). Check username/repo/token.`);
     const data = await res.json();
     const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
     return { sha: data.sha, json: JSON.parse(content) };
   }
 
-  async function ghPutFile(conn, newJsonArray, sha, commitMsg) {
+  async function ghPutFile(conn, path, newJsonArray, sha, commitMsg) {
     const content = btoa(unescape(encodeURIComponent(JSON.stringify(newJsonArray, null, 2))));
-    const res = await fetch(`https://api.github.com/repos/${conn.owner}/${conn.repo}/contents/resources.json`, {
+    const body = { message: commitMsg, content: content };
+    if (sha) body.sha = sha;
+    const res = await fetch(`https://api.github.com/repos/${conn.owner}/${conn.repo}/contents/${path}`, {
       method: 'PUT',
-      headers: {
-        'Authorization': `Bearer ${conn.token}`,
-        'Accept': 'application/vnd.github+json'
-      },
-      body: JSON.stringify({
-        message: commitMsg,
-        content: content,
-        sha: sha
-      })
+      headers: { 'Authorization': `Bearer ${conn.token}`, 'Accept': 'application/vnd.github+json' },
+      body: JSON.stringify(body)
     });
     if (!res.ok) {
       const errBody = await res.json().catch(() => ({}));
@@ -305,6 +225,203 @@
     return res.json();
   }
 
+  async function ghUploadImage(conn, base64Data, filename, commitMsg) {
+    // base64Data should already be raw base64 (no data: prefix)
+    const path = `category-images/${filename}`;
+    const res = await fetch(`https://api.github.com/repos/${conn.owner}/${conn.repo}/contents/${path}`, {
+      method: 'PUT',
+      headers: { 'Authorization': `Bearer ${conn.token}`, 'Accept': 'application/vnd.github+json' },
+      body: JSON.stringify({ message: commitMsg, content: base64Data })
+    });
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw new Error(`Image upload failed (${res.status}): ${errBody.message || 'unknown error'}`);
+    }
+    return path; // relative path to use as the image URL
+  }
+
+  function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result.split(',')[1]);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function slugify(str) {
+    return str.toLowerCase().trim().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'category';
+  }
+
+  // ---------- categories ----------
+  els.toggleCatForm.addEventListener('click', () => {
+    const showing = els.catFormWrap.style.display !== 'none';
+    els.catFormWrap.style.display = showing ? 'none' : 'block';
+    els.toggleCatForm.textContent = showing ? '+ new' : '× cancel';
+  });
+
+  els.catImage.addEventListener('change', () => {
+    const f = els.catImage.files[0];
+    els.catImgPreview.textContent = f ? `Selected: ${f.name} (${Math.round(f.size / 1024)}KB)` : '';
+  });
+
+  async function loadCategories() {
+    const conn = loadConn();
+    if (!conn) {
+      els.catList.innerHTML = '<p class="help">Connect your repo above to manage categories.</p>';
+      els.category.innerHTML = '<option value="">Connect repo first</option>';
+      return;
+    }
+    els.catList.innerHTML = '<p class="help">Loading…</p>';
+    try {
+      const { json } = await ghGetFile(conn, 'categories.json');
+      cachedCategories = json;
+      renderCatList();
+      renderCatDropdown();
+    } catch (e) {
+      els.catList.innerHTML = `<p class="help" style="color:var(--amber)">${escapeHtml(e.message)}</p>`;
+    }
+  }
+
+  function renderCatDropdown() {
+    if (!cachedCategories.length) {
+      els.category.innerHTML = '<option value="">No categories yet — add one above</option>';
+      return;
+    }
+    els.category.innerHTML = cachedCategories.map(c =>
+      `<option value="${escapeHtml(c.id)}">${escapeHtml(c.name)}</option>`
+    ).join('');
+  }
+
+  function renderCatList() {
+    if (!cachedCategories.length) {
+      els.catList.innerHTML = '<p class="help">No categories yet. Add your first one above.</p>';
+      return;
+    }
+    els.catList.innerHTML = cachedCategories.map(c => `
+      <div class="existing-item">
+        <div class="item-info">
+          <div class="thumb">${c.image ? `<img src="${escapeHtml(c.image)}" alt="">` : c.name.charAt(0).toUpperCase()}</div>
+          <span class="name">${escapeHtml(c.name)}</span>
+        </div>
+        <div class="item-actions">
+          <button class="edit-btn" data-id="${escapeHtml(c.id)}" type="button">rename</button>
+          <button class="del-btn" data-id="${escapeHtml(c.id)}" type="button">delete</button>
+        </div>
+      </div>
+      <div class="inline-edit-form" id="edit-${escapeHtml(c.id)}">
+        <label>New name</label>
+        <input type="text" class="rename-input" data-id="${escapeHtml(c.id)}" value="${escapeHtml(c.name)}">
+        <button class="wide save-rename-btn" data-id="${escapeHtml(c.id)}" type="button" style="margin-top:10px;">save name</button>
+      </div>
+    `).join('');
+  }
+
+  els.catList.addEventListener('click', (e) => {
+    const editBtn = e.target.closest('.edit-btn');
+    const delBtn = e.target.closest('.del-btn');
+    const saveRenameBtn = e.target.closest('.save-rename-btn');
+
+    if (editBtn) {
+      const form = document.getElementById('edit-' + editBtn.dataset.id);
+      form.classList.toggle('show');
+      return;
+    }
+    if (delBtn) {
+      deleteCategory(delBtn.dataset.id);
+      return;
+    }
+    if (saveRenameBtn) {
+      const id = saveRenameBtn.dataset.id;
+      const input = els.catList.querySelector(`.rename-input[data-id="${id}"]`);
+      renameCategory(id, input.value.trim());
+      return;
+    }
+  });
+
+  els.saveCatBtn.addEventListener('click', async () => {
+    const conn = getConn();
+    if (!conn) return;
+    const name = els.catName.value.trim();
+    if (!name) {
+      showStatus(els.catStatus, 'err', 'Enter a category name.');
+      return;
+    }
+
+    els.saveCatBtn.disabled = true;
+    showStatus(els.catStatus, 'pending', 'Adding category…');
+
+    try {
+      const { sha, json } = await ghGetFile(conn, 'categories.json');
+      let id = slugify(name);
+      // ensure unique id
+      let suffix = 1;
+      const existingIds = json.map(c => c.id);
+      let finalId = id;
+      while (existingIds.includes(finalId)) {
+        finalId = `${id}-${suffix++}`;
+      }
+
+      let imagePath = '';
+      const file = els.catImage.files[0];
+      if (file) {
+        showStatus(els.catStatus, 'pending', 'Uploading image…');
+        const base64 = await fileToBase64(file);
+        const ext = file.name.split('.').pop();
+        imagePath = await ghUploadImage(conn, base64, `${finalId}.${ext}`, `Add category image: ${finalId}`);
+        showStatus(els.catStatus, 'pending', 'Saving category…');
+      }
+
+      json.push({ id: finalId, name, image: imagePath });
+      await ghPutFile(conn, 'categories.json', json, sha, `Add category: ${name}`);
+
+      showStatus(els.catStatus, 'ok', `Category "${name}" added. Live in about a minute.`);
+      els.catName.value = '';
+      els.catImage.value = '';
+      els.catImgPreview.textContent = '';
+      els.catFormWrap.style.display = 'none';
+      els.toggleCatForm.textContent = '+ new';
+      loadCategories();
+    } catch (e) {
+      showStatus(els.catStatus, 'err', e.message);
+    } finally {
+      els.saveCatBtn.disabled = false;
+    }
+  });
+
+  async function renameCategory(id, newName) {
+    const conn = getConn();
+    if (!conn || !newName) return;
+    showStatus(els.catStatus, 'pending', 'Renaming…');
+    try {
+      const { sha, json } = await ghGetFile(conn, 'categories.json');
+      const cat = json.find(c => c.id === id);
+      if (cat) cat.name = newName;
+      await ghPutFile(conn, 'categories.json', json, sha, `Rename category: ${id}`);
+      showStatus(els.catStatus, 'ok', 'Renamed. Live in about a minute.');
+      loadCategories();
+    } catch (e) {
+      showStatus(els.catStatus, 'err', e.message);
+    }
+  }
+
+  async function deleteCategory(id) {
+    const conn = getConn();
+    if (!conn) return;
+    if (!confirm('Delete this category? Resources using it will show as uncategorized, not be deleted.')) return;
+    showStatus(els.catStatus, 'pending', 'Deleting…');
+    try {
+      const { sha, json } = await ghGetFile(conn, 'categories.json');
+      const filtered = json.filter(c => c.id !== id);
+      await ghPutFile(conn, 'categories.json', filtered, sha, `Remove category: ${id}`);
+      showStatus(els.catStatus, 'ok', 'Deleted. Live in about a minute.');
+      loadCategories();
+    } catch (e) {
+      showStatus(els.catStatus, 'err', e.message);
+    }
+  }
+
+  // ---------- resources ----------
   async function loadExisting() {
     const conn = loadConn();
     if (!conn) {
@@ -313,31 +430,25 @@
     }
     els.existingList.innerHTML = '<p class="help">Loading…</p>';
     try {
-      const { json } = await ghGetFile(conn);
+      const { json } = await ghGetFile(conn, 'resources.json');
       if (!json.length) {
         els.existingList.innerHTML = '<p class="help">No resources yet. Add your first one above.</p>';
         return;
       }
-      els.existingList.innerHTML = json
-        .slice()
-        .reverse()
-        .map(r => `
-          <div class="existing-item">
-            <div>
-              <div class="name">[${escapeHtml(r.category)}] ${escapeHtml(r.title)}</div>
-            </div>
+      els.existingList.innerHTML = json.slice().reverse().map(r => `
+        <div class="existing-item">
+          <div class="item-info">
+            <div class="thumb">${escapeHtml(r.category || '?').charAt(0).toUpperCase()}</div>
+            <span class="name">${escapeHtml(r.title)}</span>
+          </div>
+          <div class="item-actions">
             <button class="del-btn" data-id="${escapeHtml(r.id)}" type="button">delete</button>
           </div>
-        `).join('');
+        </div>
+      `).join('');
     } catch (e) {
       els.existingList.innerHTML = `<p class="help" style="color:var(--amber)">${escapeHtml(e.message)}</p>`;
     }
-  }
-
-  function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = String(str);
-    return div.innerHTML;
   }
 
   async function submitResource() {
@@ -350,81 +461,69 @@
     const category = els.category.value;
     const isNew = els.isNew.checked;
 
-    if (!title || !description || !url) {
-      showStatus('err', 'Fill in title, description, and link.');
+    if (!title || !description || !url || !category) {
+      showStatus(els.status, 'err', 'Fill in title, category, description, and link.');
       return;
     }
 
     els.submitBtn.disabled = true;
-    showStatus('pending', 'Publishing… reading current file…');
+    showStatus(els.status, 'pending', 'Publishing…');
 
     try {
-      const { sha, json } = await ghGetFile(conn);
-
-      const newEntry = {
+      const { sha, json } = await ghGetFile(conn, 'resources.json');
+      json.push({
         id: Date.now().toString(),
-        title,
-        category,
-        description,
-        url,
+        title, category, description, url,
         date: new Date().toISOString().slice(0, 10),
         new: isNew
-      };
-
-      json.push(newEntry);
-
-      showStatus('pending', 'Publishing… committing to repo…');
-      await ghPutFile(conn, json, sha, `Add resource: ${title}`);
-
-      showStatus('ok', `Published! "${title}" will appear on the site in about a minute.`);
+      });
+      await ghPutFile(conn, 'resources.json', json, sha, `Add resource: ${title}`);
+      showStatus(els.status, 'ok', `Published! "${title}" will appear in about a minute.`);
       els.title.value = '';
       els.description.value = '';
       els.url.value = '';
       loadExisting();
     } catch (e) {
-      showStatus('err', e.message);
+      showStatus(els.status, 'err', e.message);
     } finally {
       els.submitBtn.disabled = false;
     }
   }
 
-  async function deleteResource(id) {
+  els.existingList.addEventListener('click', async (e) => {
+    const btn = e.target.closest('.del-btn');
+    if (!btn) return;
     const conn = getConn();
     if (!conn) return;
     if (!confirm('Delete this resource? This cannot be undone.')) return;
-
-    showStatus('pending', 'Deleting…');
+    showStatus(els.status, 'pending', 'Deleting…');
     try {
-      const { sha, json } = await ghGetFile(conn);
-      const filtered = json.filter(r => r.id !== id);
-      await ghPutFile(conn, filtered, sha, `Remove resource ${id}`);
-      showStatus('ok', 'Deleted. Site will update shortly.');
+      const { sha, json } = await ghGetFile(conn, 'resources.json');
+      const filtered = json.filter(r => r.id !== btn.dataset.id);
+      await ghPutFile(conn, 'resources.json', filtered, sha, `Remove resource ${btn.dataset.id}`);
+      showStatus(els.status, 'ok', 'Deleted. Site will update shortly.');
       loadExisting();
     } catch (e) {
-      showStatus('err', e.message);
+      showStatus(els.status, 'err', e.message);
     }
-  }
-
-  els.existingList.addEventListener('click', (e) => {
-    const btn = e.target.closest('.del-btn');
-    if (!btn) return;
-    deleteResource(btn.dataset.id);
   });
 
   els.saveConnBtn.addEventListener('click', saveConn);
   els.clearConnBtn.addEventListener('click', clearConn);
   els.submitBtn.addEventListener('click', submitResource);
 
-  // init: restore saved connection
+  // init
   const saved = loadConn();
   if (saved) {
     els.repoOwner.value = saved.owner || '';
     els.repoName.value = saved.repo || '';
     els.ghToken.value = saved.token || '';
     els.tokenState.classList.add('show');
+    loadCategories();
     loadExisting();
   } else {
     els.existingList.innerHTML = '<p class="help">Connect your repo above to see existing resources.</p>';
+    els.catList.innerHTML = '<p class="help">Connect your repo above to manage categories.</p>';
   }
 })();
 </script>
