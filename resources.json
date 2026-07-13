@@ -7,14 +7,5 @@
     "url": "https://github.com/yourusername/yourrepo/blob/main/files/quadratic-solver.py",
     "date": "2026-07-01",
     "new": true
-  },
-  {
-    "id": "2",
-    "title": "unit-circle-explorer",
-    "category": "desmos",
-    "description": "Interactive unit circle with draggable angle, live sine/cosine readout, and radian/degree toggle.",
-    "url": "https://www.desmos.com/calculator/example1",
-    "date": "2026-06-28",
-    "new": false
   }
 ]
