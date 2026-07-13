@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>admin — resources</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .admin-wrap { max-width: 620px; margin: 0 auto; padding: 40px 20px 80px; }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    margin-bottom: 20px;
+  }
+  .panel h2 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    margin: 0 0 16px;
+    color: var(--teal);
+  }
+  label {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    color: var(--paper-dim);
+    margin: 16px 0 6px;
+  }
+  label:first-of-type { margin-top: 0; }
+  input[type="text"], input[type="password"], input[type="url"], textarea, select {
+    width: 100%;
+    background: var(--ink);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: var(--paper);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.15s ease;
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--teal-dim);
+  }
+  textarea { resize: vertical; min-height: 70px; }
+  .checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--paper-dim);
+  }
+  .checkbox-row input { width: auto; }
+  button {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    background: var(--teal);
+    color: var(--ink);
+    border: none;
+    border-radius: 8px;
+    padding: 13px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: opacity 0.15s ease;
+  }
+  button:hover { opacity: 0.88; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  button.secondary {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--paper-dim);
+  }
+  .status {
+    font-family: var(--font-display);
+    font-size: 0.82rem;
+    margin-top: 14px;
+    padding: 12px 14px;
+    border-radius: 8px;
+    display: none;
+  }
+  .status.show { display: block; }
+  .status.ok { background: rgba(94, 234, 212, 0.1); color: var(--teal); border: 1px solid var(--teal-dim); }
+  .status.err { background: rgba(245, 158, 11, 0.1); color: var(--amber); border: 1px solid var(--amber); }
+  .status.pending { background: rgba(156, 163, 175, 0.1); color: var(--paper-dim); border: 1px solid var(--border); }
+  .help {
+    font-size: 0.82rem;
+    color: var(--paper-dim);
+    margin: 8px 0 0;
+    line-height: 1.5;
+  }
+  .help a { color: var(--teal); }
+  .token-state {
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    padding: 8px 12px;
+    border-radius: 6px;
+    background: rgba(94, 234, 212, 0.08);
+    color: var(--teal);
+    display: none;
+  }
+  .token-state.show { display: block; }
+  .existing-list {
+    max-height: 320px;
+    overflow-y: auto;
+  }
+  .existing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88rem;
+  }
+  .existing-item:last-child { border-bottom: none; }
+  .existing-item .name { font-family: var(--font-display); font-size: 0.82rem; }
+  .existing-item .del-btn {
+    width: auto;
+    margin: 0;
+    padding: 6px 12px;
+    background: transparent;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    font-size: 0.72rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-row">
+    <a href="index.html" class="brand"><span class="prompt">~/</span>admin<span class="cursor"></span></a>
+    <a href="index.html" class="count-pill" style="text-decoration:none;">← back to site</a>
+  </div>
+</header>
+
+<div class="admin-wrap">
+
+  <div class="panel">
+    <h2>// connection</h2>
+    <label for="repoOwner">GitHub username</label>
+    <input type="text" id="repoOwner" placeholder="yourusername">
+
+    <label for="repoName">Repository name</label>
+    <input type="text" id="repoName" placeholder="yourrepo">
+
+    <label for="ghToken">Personal access token</label>
+    <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxx">
+    <p class="help">
+      Create a <strong>fine-grained token</strong> scoped to just this repo, with <strong>Contents: read and write</strong> permission.
+      Go to GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens.
+      This is stored only in your phone's browser, never sent anywhere except GitHub's API.
+    </p>
+    <div class="token-state" id="tokenState">✓ saved on this device</div>
+    <button class="secondary" id="saveConnBtn" type="button">save connection</button>
+    <button class="secondary" id="clearConnBtn" type="button" style="border-color:var(--amber); color:var(--amber);">clear saved token</button>
+  </div>
+
+  <div class="panel">
+    <h2>// add a resource</h2>
+    <label for="title">Title (filename-style, e.g. quadratic-solver.py)</label>
+    <input type="text" id="title" placeholder="derivatives-cheatsheet.pdf">
+
+    <label for="category">Category</label>
+    <select id="category">
+      <option value="code">code</option>
+      <option value="desmos">desmos</option>
+      <option value="notes">notes</option>
+      <option value="other">other</option>
+    </select>
+
+    <label for="description">Description</label>
+    <textarea id="description" placeholder="One or two sentences about what this is."></textarea>
+
+    <label for="url">Link (GitHub file, Desmos link, PDF, etc.)</label>
+    <input type="url" id="url" placeholder="https://...">
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="isNew" checked>
+      <label for="isNew" style="margin:0; color:var(--paper);">mark as NEW</label>
+    </div>
+
+    <button id="submitBtn" type="button">publish to site</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="panel">
+    <h2>// existing resources</h2>
+    <div class="existing-list" id="existingList">
+      <p class="help">Loading…</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  const els = {
+    repoOwner: document.getElementById('repoOwner'),
+    repoName: document.getElementById('repoName'),
+    ghToken: document.getElementById('ghToken'),
+    tokenState: document.getElementById('tokenState'),
+    saveConnBtn: document.getElementById('saveConnBtn'),
+    clearConnBtn: document.getElementById('clearConnBtn'),
+    title: document.getElementById('title'),
+    category: document.getElementById('category'),
+    description: document.getElementById('description'),
+    url: document.getElementById('url'),
+    isNew: document.getElementById('isNew'),
+    submitBtn: document.getElementById('submitBtn'),
+    status: document.getElementById('status'),
+    existingList: document.getElementById('existingList'),
+  };
+
+  const STORAGE_KEY = 'resources_admin_conn_v1';
+
+  function loadConn() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      return JSON.parse(raw);
+    } catch (e) { return null; }
+  }
+
+  function saveConn() {
+    const conn = {
+      owner: els.repoOwner.value.trim(),
+      repo: els.repoName.value.trim(),
+      token: els.ghToken.value.trim()
+    };
+    if (!conn.owner || !conn.repo || !conn.token) {
+      showStatus('err', 'Fill in username, repo, and token before saving.');
+      return;
+    }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(conn));
+    els.tokenState.classList.add('show');
+    showStatus('ok', 'Connection saved on this device.');
+    loadExisting();
+  }
+
+  function clearConn() {
+    localStorage.removeItem(STORAGE_KEY);
+    els.repoOwner.value = '';
+    els.repoName.value = '';
+    els.ghToken.value = '';
+    els.tokenState.classList.remove('show');
+    showStatus('pending', 'Saved connection cleared.');
+  }
+
+  function showStatus(type, msg) {
+    els.status.className = 'status show ' + type;
+    els.status.textContent = msg;
+  }
+
+  function getConn() {
+    const c = loadConn();
+    if (!c || !c.owner || !c.repo || !c.token) {
+      showStatus('err', 'Set your GitHub connection above first.');
+      return null;
+    }
+    return c;
+  }
+
+  // GitHub Contents API helpers
+  async function ghGetFile(conn) {
+    const res = await fetch(`https://api.github.com/repos/${conn.owner}/${conn.repo}/contents/resources.json`, {
+      headers: {
+        'Authorization': `Bearer ${conn.token}`,
+        'Accept': 'application/vnd.github+json'
+      }
+    });
+    if (!res.ok) throw new Error(`GitHub read failed (${res.status}). Check username/repo/token.`);
+    const data = await res.json();
+    const content = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    return { sha: data.sha, json: JSON.parse(content) };
+  }
+
+  async function ghPutFile(conn, newJsonArray, sha, commitMsg) {
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(newJsonArray, null, 2))));
+    const res = await fetch(`https://api.github.com/repos/${conn.owner}/${conn.repo}/contents/resources.json`, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `Bearer ${conn.token}`,
+        'Accept': 'application/vnd.github+json'
+      },
+      body: JSON.stringify({
+        message: commitMsg,
+        content: content,
+        sha: sha
+      })
+    });
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw new Error(`GitHub write failed (${res.status}): ${errBody.message || 'unknown error'}`);
+    }
+    return res.json();
+  }
+
+  async function loadExisting() {
+    const conn = loadConn();
+    if (!conn) {
+      els.existingList.innerHTML = '<p class="help">Connect your repo above to see existing resources.</p>';
+      return;
+    }
+    els.existingList.innerHTML = '<p class="help">Loading…</p>';
+    try {
+      const { json } = await ghGetFile(conn);
+      if (!json.length) {
+        els.existingList.innerHTML = '<p class="help">No resources yet. Add your first one above.</p>';
+        return;
+      }
+      els.existingList.innerHTML = json
+        .slice()
+        .reverse()
+        .map(r => `
+          <div class="existing-item">
+            <div>
+              <div class="name">[${escapeHtml(r.category)}] ${escapeHtml(r.title)}</div>
+            </div>
+            <button class="del-btn" data-id="${escapeHtml(r.id)}" type="button">delete</button>
+          </div>
+        `).join('');
+    } catch (e) {
+      els.existingList.innerHTML = `<p class="help" style="color:var(--amber)">${escapeHtml(e.message)}</p>`;
+    }
+  }
+
+  function escapeHtml(str) {
+    const div = document.createElement('div');
+    div.textContent = String(str);
+    return div.innerHTML;
+  }
+
+  async function submitResource() {
+    const conn = getConn();
+    if (!conn) return;
+
+    const title = els.title.value.trim();
+    const description = els.description.value.trim();
+    const url = els.url.value.trim();
+    const category = els.category.value;
+    const isNew = els.isNew.checked;
+
+    if (!title || !description || !url) {
+      showStatus('err', 'Fill in title, description, and link.');
+      return;
+    }
+
+    els.submitBtn.disabled = true;
+    showStatus('pending', 'Publishing… reading current file…');
+
+    try {
+      const { sha, json } = await ghGetFile(conn);
+
+      const newEntry = {
+        id: Date.now().toString(),
+        title,
+        category,
+        description,
+        url,
+        date: new Date().toISOString().slice(0, 10),
+        new: isNew
+      };
+
+      json.push(newEntry);
+
+      showStatus('pending', 'Publishing… committing to repo…');
+      await ghPutFile(conn, json, sha, `Add resource: ${title}`);
+
+      showStatus('ok', `Published! "${title}" will appear on the site in about a minute.`);
+      els.title.value = '';
+      els.description.value = '';
+      els.url.value = '';
+      loadExisting();
+    } catch (e) {
+      showStatus('err', e.message);
+    } finally {
+      els.submitBtn.disabled = false;
+    }
+  }
+
+  async function deleteResource(id) {
+    const conn = getConn();
+    if (!conn) return;
+    if (!confirm('Delete this resource? This cannot be undone.')) return;
+
+    showStatus('pending', 'Deleting…');
+    try {
+      const { sha, json } = await ghGetFile(conn);
+      const filtered = json.filter(r => r.id !== id);
+      await ghPutFile(conn, filtered, sha, `Remove resource ${id}`);
+      showStatus('ok', 'Deleted. Site will update shortly.');
+      loadExisting();
+    } catch (e) {
+      showStatus('err', e.message);
+    }
+  }
+
+  els.existingList.addEventListener('click', (e) => {
+    const btn = e.target.closest('.del-btn');
+    if (!btn) return;
+    deleteResource(btn.dataset.id);
+  });
+
+  els.saveConnBtn.addEventListener('click', saveConn);
+  els.clearConnBtn.addEventListener('click', clearConn);
+  els.submitBtn.addEventListener('click', submitResource);
+
+  // init: restore saved connection
+  const saved = loadConn();
+  if (saved) {
+    els.repoOwner.value = saved.owner || '';
+    els.repoName.value = saved.repo || '';
+    els.ghToken.value = saved.token || '';
+    els.tokenState.classList.add('show');
+    loadExisting();
+  } else {
+    els.existingList.innerHTML = '<p class="help">Connect your repo above to see existing resources.</p>';
+  }
+})();
+</script>
+
+</body>
+</html>
